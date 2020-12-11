@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F30847D2582FFE800B2F33D /* TimeNote_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */; };
+		4F30847F2582FFE800B2F33D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30847E2582FFE800B2F33D /* ContentView.swift */; };
+		4F3084812582FFE900B2F33D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3084802582FFE900B2F33D /* Assets.xcassets */; };
+		4F3084842582FFE900B2F33D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3084832582FFE900B2F33D /* Preview Assets.xcassets */; };
+		4F30848F2582FFEA00B2F33D /* TimeNote_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30848E2582FFEA00B2F33D /* TimeNote_iosTests.swift */; };
+		4F30849A2582FFEA00B2F33D /* TimeNote_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F30848B2582FFEA00B2F33D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F3084712582FFE800B2F33D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3084782582FFE800B2F33D;
+			remoteInfo = "TimeNote ios";
+		};
+		4F3084962582FFEA00B2F33D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F3084712582FFE800B2F33D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3084782582FFE800B2F33D;
+			remoteInfo = "TimeNote ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4F3084792582FFE800B2F33D /* TimeNote ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeNote ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeNote_iosApp.swift; sourceTree = "<group>"; };
+		4F30847E2582FFE800B2F33D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4F3084802582FFE900B2F33D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F3084832582FFE900B2F33D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4F3084852582FFE900B2F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F30848A2582FFEA00B2F33D /* TimeNote iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TimeNote iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F30848E2582FFEA00B2F33D /* TimeNote_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeNote_iosTests.swift; sourceTree = "<group>"; };
+		4F3084902582FFEA00B2F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F3084952582FFEA00B2F33D /* TimeNote iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TimeNote iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeNote_iosUITests.swift; sourceTree = "<group>"; };
+		4F30849B2582FFEA00B2F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F3084762582FFE800B2F33D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3084872582FFEA00B2F33D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3084922582FFEA00B2F33D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F3084702582FFE800B2F33D = {
+			isa = PBXGroup;
+			children = (
+				4F30847B2582FFE800B2F33D /* TimeNote ios */,
+				4F30848D2582FFEA00B2F33D /* TimeNote iosTests */,
+				4F3084982582FFEA00B2F33D /* TimeNote iosUITests */,
+				4F30847A2582FFE800B2F33D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F30847A2582FFE800B2F33D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F3084792582FFE800B2F33D /* TimeNote ios.app */,
+				4F30848A2582FFEA00B2F33D /* TimeNote iosTests.xctest */,
+				4F3084952582FFEA00B2F33D /* TimeNote iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F30847B2582FFE800B2F33D /* TimeNote ios */ = {
+			isa = PBXGroup;
+			children = (
+				4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */,
+				4F30847E2582FFE800B2F33D /* ContentView.swift */,
+				4F3084802582FFE900B2F33D /* Assets.xcassets */,
+				4F3084852582FFE900B2F33D /* Info.plist */,
+				4F3084822582FFE900B2F33D /* Preview Content */,
+			);
+			path = "TimeNote ios";
+			sourceTree = "<group>";
+		};
+		4F3084822582FFE900B2F33D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4F3084832582FFE900B2F33D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4F30848D2582FFEA00B2F33D /* TimeNote iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F30848E2582FFEA00B2F33D /* TimeNote_iosTests.swift */,
+				4F3084902582FFEA00B2F33D /* Info.plist */,
+			);
+			path = "TimeNote iosTests";
+			sourceTree = "<group>";
+		};
+		4F3084982582FFEA00B2F33D /* TimeNote iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */,
+				4F30849B2582FFEA00B2F33D /* Info.plist */,
+			);
+			path = "TimeNote iosUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F3084782582FFE800B2F33D /* TimeNote ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F30849E2582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote ios" */;
+			buildPhases = (
+				4F3084752582FFE800B2F33D /* Sources */,
+				4F3084762582FFE800B2F33D /* Frameworks */,
+				4F3084772582FFE800B2F33D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TimeNote ios";
+			productName = "TimeNote ios";
+			productReference = 4F3084792582FFE800B2F33D /* TimeNote ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F3084892582FFEA00B2F33D /* TimeNote iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F3084A12582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote iosTests" */;
+			buildPhases = (
+				4F3084862582FFEA00B2F33D /* Sources */,
+				4F3084872582FFEA00B2F33D /* Frameworks */,
+				4F3084882582FFEA00B2F33D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F30848C2582FFEA00B2F33D /* PBXTargetDependency */,
+			);
+			name = "TimeNote iosTests";
+			productName = "TimeNote iosTests";
+			productReference = 4F30848A2582FFEA00B2F33D /* TimeNote iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4F3084942582FFEA00B2F33D /* TimeNote iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F3084A42582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote iosUITests" */;
+			buildPhases = (
+				4F3084912582FFEA00B2F33D /* Sources */,
+				4F3084922582FFEA00B2F33D /* Frameworks */,
+				4F3084932582FFEA00B2F33D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F3084972582FFEA00B2F33D /* PBXTargetDependency */,
+			);
+			name = "TimeNote iosUITests";
+			productName = "TimeNote iosUITests";
+			productReference = 4F3084952582FFEA00B2F33D /* TimeNote iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F3084712582FFE800B2F33D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					4F3084782582FFE800B2F33D = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					4F3084892582FFEA00B2F33D = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 4F3084782582FFE800B2F33D;
+					};
+					4F3084942582FFEA00B2F33D = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 4F3084782582FFE800B2F33D;
+					};
+				};
+			};
+			buildConfigurationList = 4F3084742582FFE800B2F33D /* Build configuration list for PBXProject "TimeNote ios" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F3084702582FFE800B2F33D;
+			productRefGroup = 4F30847A2582FFE800B2F33D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F3084782582FFE800B2F33D /* TimeNote ios */,
+				4F3084892582FFEA00B2F33D /* TimeNote iosTests */,
+				4F3084942582FFEA00B2F33D /* TimeNote iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F3084772582FFE800B2F33D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3084842582FFE900B2F33D /* Preview Assets.xcassets in Resources */,
+				4F3084812582FFE900B2F33D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3084882582FFEA00B2F33D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3084932582FFEA00B2F33D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F3084752582FFE800B2F33D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F30847F2582FFE800B2F33D /* ContentView.swift in Sources */,
+				4F30847D2582FFE800B2F33D /* TimeNote_iosApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3084862582FFEA00B2F33D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F30848F2582FFEA00B2F33D /* TimeNote_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3084912582FFEA00B2F33D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F30849A2582FFEA00B2F33D /* TimeNote_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F30848C2582FFEA00B2F33D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3084782582FFE800B2F33D /* TimeNote ios */;
+			targetProxy = 4F30848B2582FFEA00B2F33D /* PBXContainerItemProxy */;
+		};
+		4F3084972582FFEA00B2F33D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3084782582FFE800B2F33D /* TimeNote ios */;
+			targetProxy = 4F3084962582FFEA00B2F33D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4F30849C2582FFEA00B2F33D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4F30849D2582FFEA00B2F33D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F30849F2582FFEA00B2F33D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TimeNote ios/Preview Content\"";
+				DEVELOPMENT_TEAM = 6XZR42KR6H;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "TimeNote ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lrc.TimeNote-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F3084A02582FFEA00B2F33D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TimeNote ios/Preview Content\"";
+				DEVELOPMENT_TEAM = 6XZR42KR6H;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "TimeNote ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lrc.TimeNote-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4F3084A22582FFEA00B2F33D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XZR42KR6H;
+				INFOPLIST_FILE = "TimeNote iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lrc.TimeNote-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeNote ios.app/TimeNote ios";
+			};
+			name = Debug;
+		};
+		4F3084A32582FFEA00B2F33D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XZR42KR6H;
+				INFOPLIST_FILE = "TimeNote iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lrc.TimeNote-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeNote ios.app/TimeNote ios";
+			};
+			name = Release;
+		};
+		4F3084A52582FFEA00B2F33D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XZR42KR6H;
+				INFOPLIST_FILE = "TimeNote iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lrc.TimeNote-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TimeNote ios";
+			};
+			name = Debug;
+		};
+		4F3084A62582FFEA00B2F33D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XZR42KR6H;
+				INFOPLIST_FILE = "TimeNote iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lrc.TimeNote-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TimeNote ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F3084742582FFE800B2F33D /* Build configuration list for PBXProject "TimeNote ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F30849C2582FFEA00B2F33D /* Debug */,
+				4F30849D2582FFEA00B2F33D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F30849E2582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F30849F2582FFEA00B2F33D /* Debug */,
+				4F3084A02582FFEA00B2F33D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F3084A12582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3084A22582FFEA00B2F33D /* Debug */,
+				4F3084A32582FFEA00B2F33D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F3084A42582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3084A52582FFEA00B2F33D /* Debug */,
+				4F3084A62582FFEA00B2F33D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F3084712582FFE800B2F33D /* Project object */;
+}
