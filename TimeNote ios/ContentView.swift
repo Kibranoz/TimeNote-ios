@@ -21,7 +21,7 @@ struct ContentView: View {
     @State var timenote:timeNote = timeNote();
     @State var text:String = "";
     @State var time:String = "";
-    @State var displayItem = -1;
+    @State var displayItem = 0;
     @State var pauseOrPlayButton = "play.fill"
     @State var title = "";
     @State var hours:Int = 0;
@@ -40,7 +40,12 @@ struct ContentView: View {
             }
             HStack(spacing: 50.0){
                 Button(action: {
+                    if (displayItem == 0){
                     displayItem = 1
+                    }
+                    else {
+                        displayItem = 0;
+                    }
                 }, label: {
                     Image(systemName: "clock.arrow.circlepath")
                         .font(.system(size: 40))
@@ -83,7 +88,7 @@ struct ContentView: View {
                     Image(systemName: "square.and.arrow.up")
                         .font(.system(size: 40))
                 }).buttonStyle(PlainButtonStyle())
-                .sheet(isPresented: $isSheetPresented)  {
+                .popover(isPresented: $isSheetPresented)  {
                     ActivityView(isSheetPresented: $isSheetPresented, activityItems: [self.text], applicationActivities: [])
                     
                 }
@@ -119,12 +124,21 @@ struct timeAdjustView:View{
         VStack{
         HStack{
             TextField("HH", text : $strHours)
+                .frame(width: 40.0, height: 19.0)
+                .font(.system(size: 30))
+
                 
             Text(":")
             TextField("MM", text : $strMinutes)
+                .frame(width:40.0, height: 19.0)
+                .font(.system(size: 30))
+
             Text(":")
             TextField("SS", text:$strSeconds)
-        }
+                .frame(width: 40.0, height: 19.0)
+                .font(.system(size: 30))
+
+        }.padding(.bottom, 20.0)
         Button(action: {
             pauseOrPlayButton = "pause.fill"
             timenote.play()
@@ -140,13 +154,16 @@ struct timeAdjustView:View{
 
         }, label: {
             Text(NSLocalizedString("Enregistrer", comment: "save button"))
-        }).buttonStyle(PlainButtonStyle())
-        }.padding(.horizontal, 100)
+        }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19))
+        }.padding(.horizontal, 10)
     }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+            ContentView()
+        }
     }
 }
 struct ActivityView: UIViewControllerRepresentable {
