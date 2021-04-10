@@ -153,7 +153,7 @@ struct timeAdjustView:View{
             displayItem = -1;
 
         }, label: {
-            Text(NSLocalizedString("Enregistrer", comment: "save button"))
+            Text(NSLocalizedString("Save", comment: "save button"))
         }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19))
         }.padding(.horizontal, 10)
     }
