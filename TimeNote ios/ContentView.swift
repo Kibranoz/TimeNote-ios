@@ -15,6 +15,11 @@
 import SwiftUI
 import UIKit
 
+@available(iOS 15.0, *)
+private enum Field: Int, CaseIterable {
+      case text
+  }
+@available(iOS 15.0, *)
 struct ContentView: View {
     @State private var showingAlert:Bool = false;
     @State var nomFichier:String = "";
@@ -29,11 +34,13 @@ struct ContentView: View {
     @State var seconds:Int = 0;
     @State private var isSheetPresented:Bool = false
     //@State inout var test:String = "a"
+    @available(iOS 15.0, *)
+    @FocusState private var focusedField: Field?
+
     var body: some View {
         
         VStack{
-            //Text("TimeNote").padding()
-            //TextField("Titre", text: $title)
+
             Text(time).bold().font(.system(size: 50))
             if (displayItem == 1){
                 timeAdjustView(displayItem: $displayItem, timenote: $timenote, hours: $hours, minutes: $minutes, seconds: $seconds, pauseOrPlayButton: $pauseOrPlayButton, time: $time)
@@ -97,10 +104,16 @@ struct ContentView: View {
 
             TextEditor(text: $text)
                 .font(.system(size: 19))
+                .focused($focusedField, equals: .text)
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        Button(NSLocalizedString("DismissKeyboard", comment: "dismiss_keyboard")) {
+                            focusedField = nil
+                        }
+                    }
             
         
-            
-            
+    
             
         }
         
@@ -126,17 +139,20 @@ struct timeAdjustView:View{
             TextField("HH", text : $strHours)
                 .frame(width: 40.0, height: 19.0)
                 .font(.system(size: 30))
+                .keyboardType(.numberPad)
 
                 
             Text(":")
             TextField("MM", text : $strMinutes)
                 .frame(width:40.0, height: 19.0)
                 .font(.system(size: 30))
+                .keyboardType(.numberPad)
 
             Text(":")
             TextField("SS", text:$strSeconds)
                 .frame(width: 40.0, height: 19.0)
                 .font(.system(size: 30))
+                .keyboardType(.numberPad)
 
         }.padding(.bottom, 20.0)
         Button(action: {
@@ -162,7 +178,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-            ContentView()
         }
     }
 }
@@ -184,4 +199,6 @@ struct ActivityView: UIViewControllerRepresentable {
                                context: UIViewControllerRepresentableContext<ActivityView>) {}
    }
 
+
+}
 
