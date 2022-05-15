@@ -121,8 +121,8 @@ class TextUpdater {
         var counter = 0;
         for ch in self.text {
             if (counter == position){
-                newString += String(ch);
                 newString += element;
+                newString += String(ch);
             }
             else {
                 newString += String(ch)

@@ -22,6 +22,13 @@ class TimeNote_iosTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func test_givenAStringWhenAskingToTabAtSpecificPlaceThenAddTabToCorrectPlace() throws{
+        var text = "Lorem ipsum dolor lorem ipsum";
+        var txtUpdater = TextUpdater(text: text);
+        var tabbedTxt = txtUpdater.insertAt(element: "    ", position: 0)
+        XCTAssertEqual(tabbedTxt, "    Lorem ipsum dolor lorem ipsum")
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
