@@ -33,17 +33,17 @@ struct ContentView: View {
     @State var minutes:Int = 0;
     @State var seconds:Int = 0;
     @State private var isSheetPresented:Bool = false
+    @State var textPos = 0;
     //@State inout var test:String = "a"
     @available(iOS 15.0, *)
     @FocusState private var focusedField: Field?
 
     var body: some View {
-        
         VStack{
 
             Text(time).bold().font(.system(size: 50))
             if (displayItem == 1){
-                timeAdjustView(displayItem: $displayItem, timenote: $timenote, hours: $hours, minutes: $minutes, seconds: $seconds, pauseOrPlayButton: $pauseOrPlayButton, time: $time)
+                timeAdjustView(displayItem: $displayItem, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, pauseOrPlayButton: $pauseOrPlayButton, time: $time)
             }
             HStack(spacing: 50.0){
                 Button(action: {
@@ -102,28 +102,20 @@ struct ContentView: View {
                 
  }
 
-            TextEditor(text: $text)
+            PositionAwareTextEditor(text: $text, textPos: $textPos, controller:$timenote)
                 .font(.system(size: 19))
                 .focused($focusedField, equals: .text)
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        Button(NSLocalizedString("DismissKeyboard", comment: "dismiss_keyboard")) {
-                            focusedField = nil
-                        }
-                    }
             
-        
-    
-            
+                
+            }
         }
-        
     }
    
-}
+
 
 struct timeAdjustView:View{
     @Binding var displayItem:Int;
-    @Binding var timenote:timeNote;
+    @ObservedObject var timenote:timeNote;
     @Binding var hours:Int;
     @Binding var minutes:Int;
     @Binding var seconds:Int;
@@ -174,6 +166,7 @@ struct timeAdjustView:View{
         }.padding(.horizontal, 10)
     }
 }
+@available(iOS 15.0, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -200,5 +193,5 @@ struct ActivityView: UIViewControllerRepresentable {
    }
 
 
-}
+
 

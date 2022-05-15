@@ -17,7 +17,7 @@ import Foundation
 import SwiftUI
 import UIKit
 
-class timeNote{
+class timeNote:ObservableObject{
     var text = "";
     var time:Int = 0;
     var timeBeginning = 0
@@ -79,9 +79,18 @@ class timeNote{
     func sendText() ->String{
         return self.text;
     }
+    func inputText(text:String)->Void{
+        self.text = text;
+
+    }
     func receiveText(_text:String) -> Void {
         self.text = _text;
         self.text += "\n" + "-" + getStrTime() + " : "
+    }
+    func addTab(cursorPosition:Int){
+        let textUpdater = TextUpdater(text: self.text)
+        self.text = textUpdater.insertAt(element: "    ", position: cursorPosition)
+        print(self.text)
     }
     func adjustTime(_hours:Int, _minutes:Int, _seconds:Int){
         self.timeBeginning = Int(NSDate().timeIntervalSince1970) - ((_hours * 3600) + (_minutes*60) + _seconds)
@@ -101,4 +110,28 @@ class timeNote{
     
 }
 
+
+class TextUpdater {
+    var text: String;
+    init(text:String){
+        self.text = text;
+    }
+    func insertAt(element:String, position:Int)->String{
+        var newString = "";
+        var counter = 0;
+        for ch in self.text {
+            if (counter == position){
+                newString += String(ch);
+                newString += element;
+            }
+            else {
+                newString += String(ch)
+            }
+            counter += 1;
+        }
+        self.text = newString;
+        return newString;
+    }
+    
+    }
 

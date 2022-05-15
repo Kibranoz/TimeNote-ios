@@ -15,6 +15,7 @@
 		4F30848F2582FFEA00B2F33D /* TimeNote_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30848E2582FFEA00B2F33D /* TimeNote_iosTests.swift */; };
 		4F30849A2582FFEA00B2F33D /* TimeNote_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */; };
 		4F3084AB2583003900B2F33D /* logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084AA2583003900B2F33D /* logic.swift */; };
+		4F511CFD28307E2100D2A16A /* TabsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F511CFC28307E2100D2A16A /* TabsTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeNote_iosUITests.swift; sourceTree = "<group>"; };
 		4F30849B2582FFEA00B2F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F3084AA2583003900B2F33D /* logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logic.swift; sourceTree = "<group>"; };
+		4F511CFC28307E2100D2A16A /* TabsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsTextView.swift; sourceTree = "<group>"; };
 		4FEDC7F025FD60B200B84A69 /* TimeNote ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TimeNote ios.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				4F3084852582FFE900B2F33D /* Info.plist */,
 				4F3084822582FFE900B2F33D /* Preview Content */,
 				4F3084AA2583003900B2F33D /* logic.swift */,
+				4F511CFC28307E2100D2A16A /* TabsTextView.swift */,
 			);
 			path = "TimeNote ios";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				4F30847F2582FFE800B2F33D /* ContentView.swift in Sources */,
 				4F3084AB2583003900B2F33D /* logic.swift in Sources */,
 				4F30847D2582FFE800B2F33D /* TimeNote_iosApp.swift in Sources */,
+				4F511CFD28307E2100D2A16A /* TabsTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
