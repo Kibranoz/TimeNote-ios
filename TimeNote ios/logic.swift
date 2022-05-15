@@ -90,7 +90,6 @@ class timeNote:ObservableObject{
     func addTab(cursorPosition:Int){
         let textUpdater = TextUpdater(text: self.text)
         self.text = textUpdater.insertAt(element: "    ", position: cursorPosition)
-        print(self.text)
     }
     func adjustTime(_hours:Int, _minutes:Int, _seconds:Int){
         self.timeBeginning = Int(NSDate().timeIntervalSince1970) - ((_hours * 3600) + (_minutes*60) + _seconds)
