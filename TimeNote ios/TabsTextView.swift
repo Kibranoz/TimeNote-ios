@@ -1,3 +1,4 @@
+
 //
 //  TabsTextView.swift
 //  TimeNote ios
@@ -19,30 +20,34 @@ struct PositionAwareTextEditor: UIViewRepresentable{
     
     @Binding var textPos:Int;
     
-    @Binding var controller:timeNote;
+    @ObservedObject var controller:timeNote;
 
     func makeUIView(context: Context) -> UITextView {
         let uiTextView = UITextView()
 
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: uiTextView.frame.size.width, height: 44))
-
+ 
         uiTextView.font = UIFont.systemFont(ofSize: 19)
         uiTextView.text = text;
         uiTextView.delegate = context.coordinator
         
         let tabButton = UIBarButtonItem(image: .init(systemName: "arrow.right.to.line.compact"), primaryAction: UIAction{action in
-            context.coordinator.addTab(textView: uiTextView
-                                      ) })
+            context.coordinator.addTab(textView: uiTextView) })
         let keyboardDownButton = UIBarButtonItem(image: .init(systemName: "keyboard.chevron.compact.down"), primaryAction: UIAction{action in
             context.coordinator.hideKeyBoard(textView:uiTextView)
         })
         
-        toolBar.setItems([tabButton,keyboardDownButton], animated: true)
-                uiTextView.inputAccessoryView = toolBar
-
-               uiTextView.autocapitalizationType = .sentences
-               uiTextView.isSelectable = true
-               uiTextView.isUserInteractionEnabled = true
+        let selectAllButton = UIBarButtonItem(image: .init(systemName: "selection.pin.in.out"), primaryAction: UIAction {action
+            in
+            context.coordinator.selectAll(textView:uiTextView)
+        })
+                                              
+        
+        toolBar.setItems([tabButton,keyboardDownButton, selectAllButton], animated: true)
+        uiTextView.inputAccessoryView = toolBar
+       uiTextView.autocapitalizationType = .sentences
+       uiTextView.isSelectable = true
+       uiTextView.isUserInteractionEnabled = true
         
         return uiTextView;
     }
@@ -68,7 +73,7 @@ struct PositionAwareTextEditor: UIViewRepresentable{
 class Coordinator: NSObject, UITextViewDelegate {
     var text: Binding<String>
     var textPos:Int
-    var controller:timeNote;
+    @ObservedObject var controller: timeNote
     
 
  
@@ -79,8 +84,13 @@ class Coordinator: NSObject, UITextViewDelegate {
     }
     
     
-    func hideKeyBoard( textView:UITextView){
+    func hideKeyBoard(textView:UITextView){
         textView.resignFirstResponder()
+    }
+    
+    func selectAll(textView: UITextView) {
+        textView.becomeFirstResponder()
+        textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.endOfDocument)
     }
     
     func addTab(textView:UITextView){

@@ -14,6 +14,7 @@
 
 import SwiftUI
 import UIKit
+import AVFoundation
 
 @available(iOS 15.0, *)
 private enum Field: Int, CaseIterable {
@@ -22,8 +23,8 @@ private enum Field: Int, CaseIterable {
 @available(iOS 15.0, *)
 struct ContentView: View {
     @State private var showingAlert:Bool = false;
+    @EnvironmentObject var timenote: timeNote
     @State var nomFichier:String = "";
-    @State var timenote:timeNote = timeNote();
     @State var text:String = "";
     @State var time:String = "";
     @State var displayItem = 0;
@@ -38,9 +39,10 @@ struct ContentView: View {
     @available(iOS 15.0, *)
     @FocusState private var focusedField: Field?
 
+    
     var body: some View {
         VStack{
-
+            
             Text(time).bold().font(.system(size: 50))
             if (displayItem == 1){
                 timeAdjustView(displayItem: $displayItem, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, pauseOrPlayButton: $pauseOrPlayButton, time: $time)
@@ -48,7 +50,7 @@ struct ContentView: View {
             HStack(spacing: 50.0){
                 Button(action: {
                     if (displayItem == 0){
-                    displayItem = 1
+                        displayItem = 1
                     }
                     else {
                         displayItem = 0;
@@ -56,7 +58,7 @@ struct ContentView: View {
                 }, label: {
                     Image(systemName: "clock.arrow.circlepath")
                         .font(.system(size: 40))
-                        
+                    
                 }).buttonStyle(PlainButtonStyle())
                 Button(action: {
                     timenote.receiveText(_text: text)
@@ -67,8 +69,8 @@ struct ContentView: View {
                 }).buttonStyle(PlainButtonStyle())
                 Button(action: {
                     if (timenote.getSiEnPause()){
-                    pauseOrPlayButton = "pause.fill"
-                    timenote.play()
+                        pauseOrPlayButton = "pause.fill"
+                        timenote.play()
                     }
                     else {
                         pauseOrPlayButton = "play.fill"
@@ -77,7 +79,7 @@ struct ContentView: View {
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
                         time = timenote.getStrTime()
                     }
-                   
+                    
                     
                     
                 }, label: {
@@ -88,28 +90,29 @@ struct ContentView: View {
                 Button(action: {
                     timenote.receiveText(_text: text)
                     timenote.write(text: text, to: title)
-
+                    
                     self.isSheetPresented = true;
-   
+                    
                 }, label: {
                     Image(systemName: "square.and.arrow.up")
                         .font(.system(size: 40))
                 }).buttonStyle(PlainButtonStyle())
-                .popover(isPresented: $isSheetPresented)  {
-                    ActivityView(isSheetPresented: $isSheetPresented, activityItems: [self.text], applicationActivities: [])
-                    
-                }
+                    .popover(isPresented: $isSheetPresented)  {
+                        ActivityView(isSheetPresented: $isSheetPresented, activityItems: [self.text], applicationActivities: [])
+                        
+                    }
                 
- }
-
-            PositionAwareTextEditor(text: $text, textPos: $textPos, controller:$timenote)
+            }
+            
+            PositionAwareTextEditor(text: $text, textPos: $textPos, controller:timenote)
                 .font(.system(size: 19))
                 .focused($focusedField, equals: .text)
             
-                
-            }
         }
+        
     }
+}
+    
    
 
 

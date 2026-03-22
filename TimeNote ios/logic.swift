@@ -16,6 +16,9 @@ import Foundation
 import Foundation
 import SwiftUI
 import UIKit
+import AVFoundation
+import Combine
+
 
 class timeNote:ObservableObject{
     var text = "";
@@ -57,11 +60,6 @@ class timeNote:ObservableObject{
     }
     
     func write(text: String, to fileNamed: String, folder: String = "TimenoteFiles") {
-        //let ac = UIActivityViewController(activityItems: ["hi"], applicationActivities: nil);
-        
-        //ac.popoverPresentationController?.barButtonItem = myBarButtonItem
-        //ac.isModalInPresentation = true;
-        //ac.present(ac, animated: true, completion: nil);
         
         guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return }
         guard let writePath = NSURL(fileURLWithPath: path).appendingPathComponent(folder) else { return }
@@ -107,6 +105,52 @@ class timeNote:ObservableObject{
         }
     }
     
+}
+
+class AudioSessionManager: ObservableObject {
+    private var cancellables = Set<AnyCancellable>()
+    private var timenote:timeNote
+    
+    private func setupAudioSession() {
+        do {
+            let session = AVAudioSession.sharedInstance()
+            // 'playback' indique que l'audio est la fonction principale
+            try session.setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            try session.setActive(true)
+        } catch {
+            print("Erreur fatale : Impossible de configurer la session audio : \(error)")
+        }
+    }
+    
+    init(timeNote: timeNote) {
+        self.timenote = timeNote
+        self.setupAudioSession()
+        setupObservers()
+        
+        
+    }
+    
+    func setupObservers() {
+        
+        // 2. Pour la musique externe (Spotify, etc.)
+        NotificationCenter.default.publisher(for: AVAudioSession.silenceSecondaryAudioHintNotification)
+            .sink { [weak self] n in self?.handleSecondaryAudioHint(n) }
+            .store(in: &cancellables)
+    }
+    
+    private func handleSecondaryAudioHint(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let typeValue = userInfo[AVAudioSessionSilenceSecondaryAudioHintTypeKey] as? UInt,
+              let type = AVAudioSession.SilenceSecondaryAudioHintType(rawValue: typeValue) else { return }
+        
+        if type == .begin {
+            print("Son externe détecté -> Pause")
+            timenote.play()
+        } else {
+            print("Silence externe détecté -> Play")
+            timenote.pause()
+        }
+    }
 }
 
 
