@@ -13,7 +13,7 @@ struct TimeNote_iosApp: App {
     @StateObject var timenote:timeNote
     @StateObject var audioObserver:AudioSessionManager
     init() {
-        var timeNoteInstance = timeNote()
+        let timeNoteInstance = timeNote()
         _timenote = .init(wrappedValue: timeNoteInstance)
         let audioSessionManager = AudioSessionManager(timeNote: timeNoteInstance)
         _audioObserver = .init(wrappedValue: audioSessionManager)

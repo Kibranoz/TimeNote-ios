@@ -22,15 +22,17 @@ import Combine
 
 class timeNote:ObservableObject{
     var text = "";
-    var time:Int = 0;
+    @Published var time:Int = 0;
     var timeBeginning = 0
     var pauseBeginning = 0;
     var enPause:Bool = true;
     var begin = true;
+    var isAudioSync:Bool = false;
+    @Published var pauseOrPlayButton: String = "play.fill"
     
     var pauseTime:Int = 0
     init(){
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
             
                 self.tick()
     
@@ -39,24 +41,34 @@ class timeNote:ObservableObject{
     }
     func getStrTime() -> String{
         
-        var hr = Int(floor(Double(self.time/3600)));
-        var min = Int(floor(Double((self.time/60)%60)));
-        var sec = Int((self.time%60))
+        if (self.begin) {
+            return ""
+        }
         
-        var strtime:String = String(hr) + ":" + String(min) + ":" + String(sec)
+        let hr = Int(floor(Double(self.time/3600)));
+        let hour:String  = hr < 10 ? "0" + String(hr) : String(hr)
+        let min = Int(floor(Double((self.time/60)%60)));
+        let minute:String  = min < 10 ? "0" + String(min) : String(min)
+        let sec = Int((self.time%60))
+        let second:String  = sec < 10 ? "0" + String(sec) : String(sec)
+        
+        let strtime:String = hour + ":" + minute + ":" + second
         return strtime
     }
     func play(){
+        if (!self.enPause) {
+            return
+        }
         if (self.begin){
             self.timeBeginning = Int(NSDate().timeIntervalSince1970)
             print(self.timeBeginning)
             self.begin = false
         }
         if (pauseTime != 0){
-            var delta = self.pauseTime - self.pauseBeginning
-            self.timeBeginning += delta
-        }
+            let delta = self.pauseTime - self.pauseBeginning
+            self.timeBeginning += delta        }
         self.enPause = false;
+        self.pauseOrPlayButton = "pause.fill"
     }
     
     func write(text: String, to fileNamed: String, folder: String = "TimenoteFiles") {
@@ -68,8 +80,12 @@ class timeNote:ObservableObject{
         try? text.write(to: file, atomically: false, encoding: String.Encoding.utf8)
     }
     func pause(){
+        if self.enPause {
+            return
+        }
         self.pauseBeginning = Int(NSDate().timeIntervalSince1970)
         self.enPause = true;
+        self.pauseOrPlayButton = "play.fill"
     }
     func getSiEnPause() -> Bool {
         return self.enPause
@@ -93,6 +109,14 @@ class timeNote:ObservableObject{
         self.timeBeginning = Int(NSDate().timeIntervalSince1970) - ((_hours * 3600) + (_minutes*60) + _seconds)
         print(_minutes*60);
     }
+    func shouldStartAudioSync()->Bool {
+        let isExternalAudioPlaying = AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint
+        return isExternalAudioPlaying
+    }
+    func shouldEndAudioSync()->Bool {
+        let isExternalAudioPlaying = AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint
+        return !isExternalAudioPlaying && self.isAudioSync
+    }
     func tick(){
         if !(self.enPause){
             self.time = Int(NSDate().timeIntervalSince1970) - self.timeBeginning
@@ -103,6 +127,16 @@ class timeNote:ObservableObject{
             self.pauseTime = Int(NSDate().timeIntervalSince1970)
             
         }
+        
+        if shouldStartAudioSync() {
+            self.play()
+            self.isAudioSync = true
+        }
+        if shouldEndAudioSync() {
+            self.pause()
+            self.isAudioSync = false
+        }
+
     }
     
 }
@@ -114,8 +148,9 @@ class AudioSessionManager: ObservableObject {
     private func setupAudioSession() {
         do {
             let session = AVAudioSession.sharedInstance()
-            // 'playback' indique que l'audio est la fonction principale
-            try session.setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            // Use a secondary audio category so we can react to non-mixable audio
+            // from other apps (for example YouTube in Split View/Stage Manager).
+            try session.setCategory(.ambient, mode: .default, options: [])
             try session.setActive(true)
         } catch {
             print("Erreur fatale : Impossible de configurer la session audio : \(error)")
@@ -126,8 +161,6 @@ class AudioSessionManager: ObservableObject {
         self.timenote = timeNote
         self.setupAudioSession()
         setupObservers()
-        
-        
     }
     
     func setupObservers() {
@@ -144,13 +177,12 @@ class AudioSessionManager: ObservableObject {
               let type = AVAudioSession.SilenceSecondaryAudioHintType(rawValue: typeValue) else { return }
         
         if type == .begin {
-            print("Son externe détecté -> Pause")
-            timenote.play()
+            print("Son externe détecté -> Play")
         } else {
-            print("Silence externe détecté -> Play")
-            timenote.pause()
+            print("Silence externe détecté -> Pause")
         }
     }
+
 }
 
 
@@ -177,4 +209,3 @@ class TextUpdater {
     }
     
     }
-

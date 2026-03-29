@@ -28,7 +28,6 @@ struct ContentView: View {
     @State var text:String = "";
     @State var time:String = "";
     @State var displayItem = 0;
-    @State var pauseOrPlayButton = "play.fill"
     @State var title = "";
     @State var hours:Int = 0;
     @State var minutes:Int = 0;
@@ -41,11 +40,11 @@ struct ContentView: View {
 
     
     var body: some View {
-        VStack{
+      VStack{
             
             Text(time).bold().font(.system(size: 50))
             if (displayItem == 1){
-                timeAdjustView(displayItem: $displayItem, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, pauseOrPlayButton: $pauseOrPlayButton, time: $time)
+                timeAdjustView(displayItem: $displayItem, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, time: $time)
             }
             HStack(spacing: 50.0){
                 Button(action: {
@@ -69,21 +68,14 @@ struct ContentView: View {
                 }).buttonStyle(PlainButtonStyle())
                 Button(action: {
                     if (timenote.getSiEnPause()){
-                        pauseOrPlayButton = "pause.fill"
                         timenote.play()
                     }
                     else {
-                        pauseOrPlayButton = "play.fill"
                         timenote.pause()
                     }
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
-                        time = timenote.getStrTime()
-                    }
-                    
-                    
                     
                 }, label: {
-                    Image(systemName: pauseOrPlayButton)
+                    Image(systemName: timenote.pauseOrPlayButton)
                         .font(.system(size: 40))
                 })
                 .buttonStyle(PlainButtonStyle())
@@ -99,7 +91,6 @@ struct ContentView: View {
                 }).buttonStyle(PlainButtonStyle())
                     .popover(isPresented: $isSheetPresented)  {
                         ActivityView(isSheetPresented: $isSheetPresented, activityItems: [self.text], applicationActivities: [])
-                        
                     }
                 
             }
@@ -108,7 +99,11 @@ struct ContentView: View {
                 .font(.system(size: 19))
                 .focused($focusedField, equals: .text)
             
-        }
+      }.task {
+          Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
+              self.time = timenote.getStrTime()
+          }
+      }
         
     }
 }
@@ -126,7 +121,6 @@ struct timeAdjustView:View{
     @State var strHours = "0"
     @State var strMinutes = "0"
     @State var strSeconds = "0"
-    @Binding var pauseOrPlayButton:String;
     @Binding var time:String
     var body: some View{
         VStack{
@@ -151,7 +145,6 @@ struct timeAdjustView:View{
 
         }.padding(.bottom, 20.0)
         Button(action: {
-            pauseOrPlayButton = "pause.fill"
             timenote.play()
 
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
