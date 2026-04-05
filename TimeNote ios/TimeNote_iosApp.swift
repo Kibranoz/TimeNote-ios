@@ -10,10 +10,10 @@ import SwiftUI
 @available(iOS 15.0, *)
 @main
 struct TimeNote_iosApp: App {
-    @StateObject var timenote:timeNote
+    @StateObject var timenote:AppController
     @StateObject var audioObserver:AudioSessionManager
     init() {
-        let timeNoteInstance = timeNote()
+        let timeNoteInstance = AppController()
         _timenote = .init(wrappedValue: timeNoteInstance)
         let audioSessionManager = AudioSessionManager(timeNote: timeNoteInstance)
         _audioObserver = .init(wrappedValue: audioSessionManager)

@@ -20,9 +20,10 @@ import AVFoundation
 import Combine
 
 
-class timeNote:ObservableObject{
-    var text = "";
+class AppController:ObservableObject{
+    @Published var text = "";
     @Published var time:Int = 0;
+    @Published var formattedTime = ""
     var timeBeginning = 0
     var pauseBeginning = 0;
     var enPause:Bool = true;
@@ -35,10 +36,10 @@ class timeNote:ObservableObject{
         Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
             
                 self.tick()
-    
            
         }
     }
+    
     func getStrTime() -> String{
         
         if (self.begin) {
@@ -90,16 +91,17 @@ class timeNote:ObservableObject{
     func getSiEnPause() -> Bool {
         return self.enPause
     }
-    func sendText() ->String{
-        return self.text;
-    }
     func inputText(text:String)->Void{
         self.text = text;
 
     }
-    func receiveText(_text:String) -> Void {
-        self.text = _text;
+    func addNote() -> Void {
         self.text += "\n" + "-" + getStrTime() + " : "
+    }
+    
+    func updateNotesByOffset(hours:Int, minutes:Int, seconds:Int) {
+        let textUpdater = TextUpdater(text: self.text)
+        self.text = textUpdater.getCorrectedTextForTime(hours: hours, minutes: minutes, seconds: seconds)
     }
     func addTab(cursorPosition:Int){
         let textUpdater = TextUpdater(text: self.text)
@@ -120,7 +122,7 @@ class timeNote:ObservableObject{
     func tick(){
         if !(self.enPause){
             self.time = Int(NSDate().timeIntervalSince1970) - self.timeBeginning
-            //print(self.timeBeginning)
+            self.formattedTime = getStrTime()
             
         }
         if (self.enPause && !self.begin){
@@ -143,7 +145,7 @@ class timeNote:ObservableObject{
 
 class AudioSessionManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    private var timenote:timeNote
+    private var timenote:AppController
     
     private func setupAudioSession() {
         do {
@@ -157,7 +159,7 @@ class AudioSessionManager: ObservableObject {
         }
     }
     
-    init(timeNote: timeNote) {
+    init(timeNote: AppController) {
         self.timenote = timeNote
         self.setupAudioSession()
         setupObservers()
@@ -206,6 +208,36 @@ class TextUpdater {
         }
         self.text = newString;
         return newString;
+    }
+    
+    func getTimeStampedNotes() -> [TimeStampedNote] {
+        var timeStampedNotes: [TimeStampedNote] = []
+        let timeStampRegex =  #"\-\d{2}:\d{2}:\d{2}\ :\ [\s\S]*?(?=\-\d{2}:\d{2}:\d{2}\ :\ |$)"#
+        
+        for match in self.text.matches(of: try! Regex(timeStampRegex)) {
+            let timeStamp = TimeStampedNote(stringRepresentation: String(self.text[match.range]))
+            timeStampedNotes.append(timeStamp)
+        }
+        return timeStampedNotes
+    }
+    
+    func getCorrectedTextForTime(hours:Int, minutes:Int, seconds:Int) -> String {
+        let offset = time(hours: hours, minutes: minutes, seconds: seconds)
+        var newText = ""
+        
+        let timeStampedNotes: [TimeStampedNote] = self.getTimeStampedNotes()
+        
+        let updatedNotes: [TimeStampedNote] = timeStampedNotes.map { note in
+            let newNote = note.offset(by: offset)
+            return newNote
+        }
+        updatedNotes.forEach { note in
+            newText += note.toString()
+        }
+        
+        return newText
+        
+        
     }
     
     }

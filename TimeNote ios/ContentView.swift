@@ -23,11 +23,9 @@ private enum Field: Int, CaseIterable {
 @available(iOS 15.0, *)
 struct ContentView: View {
     @State private var showingAlert:Bool = false;
-    @EnvironmentObject var timenote: timeNote
+    @EnvironmentObject var timenote: AppController
     @State var nomFichier:String = "";
-    @State var text:String = "";
-    @State var time:String = "";
-    @State var displayItem = 0;
+    @State var showAdjustView:Bool = false;
     @State var title = "";
     @State var hours:Int = 0;
     @State var minutes:Int = 0;
@@ -37,31 +35,29 @@ struct ContentView: View {
     //@State inout var test:String = "a"
     @available(iOS 15.0, *)
     @FocusState private var focusedField: Field?
-
+    
     
     var body: some View {
-      VStack{
+        VStack{
             
-            Text(time).bold().font(.system(size: 50))
-            if (displayItem == 1){
-                timeAdjustView(displayItem: $displayItem, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, time: $time)
+            Text(timenote.formattedTime).bold().font(.system(size: 50))
+            if (showAdjustView){
+                VStack {
+                    timePreAdjust(shouldDisplay: $showAdjustView, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, time: $timenote.formattedTime)
+                    Text("Or")
+                    timePostAdjustView(timenote: timenote, shouldDisplay: $showAdjustView)
+                }
             }
             HStack(spacing: 50.0){
                 Button(action: {
-                    if (displayItem == 0){
-                        displayItem = 1
-                    }
-                    else {
-                        displayItem = 0;
-                    }
+                    showAdjustView.toggle()
                 }, label: {
                     Image(systemName: "clock.arrow.circlepath")
                         .font(.system(size: 40))
                     
                 }).buttonStyle(PlainButtonStyle())
                 Button(action: {
-                    timenote.receiveText(_text: text)
-                    text = timenote.sendText()
+                    timenote.addNote()
                 }, label: {
                     Image(systemName: "text.insert")
                         .font(.system(size: 40))
@@ -80,8 +76,6 @@ struct ContentView: View {
                 })
                 .buttonStyle(PlainButtonStyle())
                 Button(action: {
-                    timenote.receiveText(_text: text)
-                    timenote.write(text: text, to: title)
                     
                     self.isSheetPresented = true;
                     
@@ -90,30 +84,83 @@ struct ContentView: View {
                         .font(.system(size: 40))
                 }).buttonStyle(PlainButtonStyle())
                     .popover(isPresented: $isSheetPresented)  {
-                        ActivityView(isSheetPresented: $isSheetPresented, activityItems: [self.text], applicationActivities: [])
+                        ActivityView(isSheetPresented: $isSheetPresented, activityItems: [timenote.text], applicationActivities: [])
                     }
-                
             }
+                
+                
+                PositionAwareTextEditor(text: $timenote.text, textPos: $textPos, controller:timenote)
+                    .font(.system(size: 19))
+                    .focused($focusedField, equals: .text)
             
-            PositionAwareTextEditor(text: $text, textPos: $textPos, controller:timenote)
-                .font(.system(size: 19))
-                .focused($focusedField, equals: .text)
-            
-      }.task {
-          Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
-              self.time = timenote.getStrTime()
-          }
-      }
-        
+        }
     }
 }
     
    
+struct timePostAdjustView: View {
+    @ObservedObject var timenote:AppController;
+    
+    @Binding var shouldDisplay:Bool
+    
+    @State var strHours = "0"
+    @State var strMinutes = "0"
+    @State var strSeconds = "0"
+    @State var negativeTime = false
+    
+    var body : some View {
+        
+        VStack {
+            Text("Adjust existing note by ...")
+            HStack {
+                
+                Button (action: {
+                    negativeTime = !negativeTime
+                }, label: {
+                    negativeTime ? Text("-").foregroundColor(.red).font(.system(size: 20)) : Text("+").foregroundColor(.green).font(.system(size: 20))
+                })
+                
+                
+                TextField("HH", text : $strHours)
+                    .frame(width: 40.0, height: 19.0)
+                    .font(.system(size: 30))
+                    .keyboardType(.numberPad)
 
+                    
+                Text(":")
+                TextField("MM", text : $strMinutes)
+                    .frame(width:40.0, height: 19.0)
+                    .font(.system(size: 30))
+                    .keyboardType(.numberPad)
 
-struct timeAdjustView:View{
-    @Binding var displayItem:Int;
-    @ObservedObject var timenote:timeNote;
+                Text(":")
+                TextField("SS", text:$strSeconds)
+                    .frame(width: 40.0, height: 19.0)
+                    .font(.system(size: 30))
+                    .keyboardType(.numberPad)
+
+            }.padding(.bottom, 20.0)
+            
+        }
+        
+        Button(action: {
+            let factor = negativeTime ? -1 : 1
+            let hours = factor * (Int(strHours) ?? 0)
+            let minutes = factor * (Int(strMinutes) ?? 0)
+            let seconds = factor * (Int(strSeconds) ?? 0)
+            timenote.updateNotesByOffset(hours: hours, minutes: minutes, seconds: seconds)
+            shouldDisplay = false
+        }, label: {
+            Text("Done")
+        }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19))
+    }
+
+    
+}
+
+struct timePreAdjust:View{
+    @Binding var shouldDisplay:Bool;
+    @ObservedObject var timenote:AppController;
     @Binding var hours:Int;
     @Binding var minutes:Int;
     @Binding var seconds:Int;
@@ -124,6 +171,7 @@ struct timeAdjustView:View{
     @Binding var time:String
     var body: some View{
         VStack{
+            Text("Adjust current time by ...")
         HStack{
             TextField("HH", text : $strHours)
                 .frame(width: 40.0, height: 19.0)
@@ -154,12 +202,12 @@ struct timeAdjustView:View{
             minutes = Int (strMinutes) ?? 0
             seconds = Int (strSeconds) ?? 0
             timenote.adjustTime(_hours: hours, _minutes: minutes, _seconds: seconds)
-            displayItem = -1;
+            shouldDisplay.toggle()
 
         }, label: {
-            Text(NSLocalizedString("Save", comment: "save button"))
+            Text("Done")
         }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19))
-        }.padding(.horizontal, 10)
+        }
     }
 }
 @available(iOS 15.0, *)

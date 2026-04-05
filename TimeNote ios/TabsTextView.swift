@@ -20,7 +20,7 @@ struct PositionAwareTextEditor: UIViewRepresentable{
     
     @Binding var textPos:Int;
     
-    @ObservedObject var controller:timeNote;
+    @ObservedObject var controller:AppController;
 
     func makeUIView(context: Context) -> UITextView {
         let uiTextView = UITextView()
@@ -73,11 +73,11 @@ struct PositionAwareTextEditor: UIViewRepresentable{
 class Coordinator: NSObject, UITextViewDelegate {
     var text: Binding<String>
     var textPos:Int
-    @ObservedObject var controller: timeNote
+    @ObservedObject var controller: AppController
     
 
  
-    init(_ text: Binding<String>, textPos:Int, controller: timeNote) {
+    init(_ text: Binding<String>, textPos:Int, controller: AppController) {
         self.text = text
         self.textPos = textPos
         self.controller = controller;
@@ -96,7 +96,7 @@ class Coordinator: NSObject, UITextViewDelegate {
     func addTab(textView:UITextView){
         controller.inputText(text: self.text.wrappedValue);
         controller.addTab(cursorPosition: textPos)
-        self.text.wrappedValue = controller.sendText();
+        self.text.wrappedValue = controller.text;
         
         
     }

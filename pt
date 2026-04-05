@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  TimeNote
+
+  Created by Louis Couture on 2021-04-09.
+  
+*/
+
+"done"="Concluído";
+"timePreAdjust": "Ajustar a hora atual"
+"timePostAdjust": "Ajustar as notas existentes em ..."
+"or": "Ou"
