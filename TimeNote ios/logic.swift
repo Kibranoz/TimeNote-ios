@@ -28,7 +28,7 @@ class AppController:ObservableObject{
     var pauseBeginning = 0;
     var enPause:Bool = true;
     var begin = true;
-    var isAudioSync:Bool = false;
+    @Published var isAudioSync:Bool = false;
     @Published var pauseOrPlayButton: String = "play.fill"
     
     var pauseTime:Int = 0

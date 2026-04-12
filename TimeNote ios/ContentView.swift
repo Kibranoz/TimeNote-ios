@@ -12,9 +12,11 @@
 //  Created by Louis Couture on 2020-11-13.
 //
 
+import AlertToast
 import SwiftUI
 import UIKit
 import AVFoundation
+
 
 @available(iOS 15.0, *)
 private enum Field: Int, CaseIterable {
@@ -26,6 +28,7 @@ struct ContentView: View {
     @EnvironmentObject var timenote: AppController
     @State var nomFichier:String = "";
     @State var showAdjustView:Bool = false;
+    @State var showAudioSyncToast:Bool = false;
     @State var title = "";
     @State var hours:Int = 0;
     @State var minutes:Int = 0;
@@ -33,6 +36,7 @@ struct ContentView: View {
     @State private var isSheetPresented:Bool = false
     @State var textPos = 0;
     //@State inout var test:String = "a"
+    
     @available(iOS 15.0, *)
     @FocusState private var focusedField: Field?
     
@@ -63,6 +67,9 @@ struct ContentView: View {
                         .font(.system(size: 40))
                 }).buttonStyle(PlainButtonStyle())
                 Button(action: {
+                    if (timenote.isAudioSync) {
+                        showAudioSyncToast = true
+                    }
                     if (timenote.getSiEnPause()){
                         timenote.play()
                     }
@@ -87,13 +94,14 @@ struct ContentView: View {
                         ActivityView(isSheetPresented: $isSheetPresented, activityItems: [timenote.text], applicationActivities: [])
                     }
             }
-                
+
                 
                 PositionAwareTextEditor(text: $timenote.text, textPos: $textPos, controller:timenote)
                     .font(.system(size: 19))
                     .focused($focusedField, equals: .text)
             
-        }
+        }.toast(isPresenting: $showAudioSyncToast) {
+            AlertToast(type: .regular, title: "Media is playing, to pause or play, use the play/pause on the media app, and this app will sync with it.")     }
     }
 }
     

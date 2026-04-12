@@ -16,6 +16,7 @@
 		4F30849A2582FFEA00B2F33D /* TimeNote_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */; };
 		4F3084AB2583003900B2F33D /* logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084AA2583003900B2F33D /* logic.swift */; };
 		4F511CFD28307E2100D2A16A /* TabsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F511CFC28307E2100D2A16A /* TabsTextView.swift */; };
+		4F58BF9D2F8B205100302709 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 4F58BF9C2F8B205100302709 /* AlertToast */; };
 		4F9913192F8355F40042A973 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4F9913182F8355F40042A973 /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F58BF9D2F8B205100302709 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +94,7 @@
 				4F30847A2582FFE800B2F33D /* Products */,
 				4F9912DC2F8350A00042A973 /* Untitled.swift */,
 				4F9913182F8355F40042A973 /* AppIcon.icon */,
+				4F58BF9B2F8B205100302709 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +139,13 @@
 				4F30849B2582FFEA00B2F33D /* Info.plist */,
 			);
 			path = "TimeNote iosUITests";
+			sourceTree = "<group>";
+		};
+		4F58BF9B2F8B205100302709 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +239,9 @@
 				sv,
 			);
 			mainGroup = 4F3084702582FFE800B2F33D;
+			packageReferences = (
+				4FB192DE2F8B183D00A8989F /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 4F30847A2582FFE800B2F33D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -449,7 +462,6 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_ASSET_PATHS = "\"TimeNote ios\"";
 				DEVELOPMENT_TEAM = 6XZR42KR6H;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -465,6 +477,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = lrc.Timenote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
@@ -481,7 +494,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_ASSET_PATHS = "\"TimeNote ios\"";
 				DEVELOPMENT_TEAM = 6XZR42KR6H;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -498,6 +510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lrc.Timenote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
@@ -621,6 +634,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4FB192DE2F8B183D00A8989F /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F58BF9C2F8B205100302709 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FB192DE2F8B183D00A8989F /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4F3084712582FFE800B2F33D /* Project object */;
 }
