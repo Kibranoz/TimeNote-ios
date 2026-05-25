@@ -16,13 +16,13 @@ import AlertToast
 import SwiftUI
 import UIKit
 import AVFoundation
+import SwiftData
 
-
-@available(iOS 15.0, *)
+@available(iOS 17.0, *)
 private enum Field: Int, CaseIterable {
       case text
   }
-@available(iOS 15.0, *)
+@available(iOS 17.0, *)
 struct ContentView: View {
     @State private var showingAlert:Bool = false;
     @EnvironmentObject var timenote: AppController
@@ -35,9 +35,8 @@ struct ContentView: View {
     @State var seconds:Int = 0;
     @State private var isSheetPresented:Bool = false
     @State var textPos = 0;
-    //@State inout var test:String = "a"
+    @State private var showExporter = false
     
-    @available(iOS 15.0, *)
     @FocusState private var focusedField: Field?
     
     
@@ -82,10 +81,16 @@ struct ContentView: View {
                         .font(.system(size: 40))
                 })
                 .buttonStyle(PlainButtonStyle())
+#if targetEnvironment(macCatalyst)
                 Button(action: {
-                    
-                    self.isSheetPresented = true;
-                    
+                    self.showExporter = true
+                }, label: {
+                    Image(systemName: "square.and.arrow.down")
+                        .font(.system(size: 40))
+                }).buttonStyle(PlainButtonStyle())
+#else
+                Button(action: {
+                    self.isSheetPresented = true
                 }, label: {
                     Image(systemName: "square.and.arrow.up")
                         .font(.system(size: 40))
@@ -93,17 +98,25 @@ struct ContentView: View {
                     .popover(isPresented: $isSheetPresented)  {
                         ActivityView(isSheetPresented: $isSheetPresented, activityItems: [timenote.text], applicationActivities: [])
                     }
+                #endif
             }
-
-                
-                PositionAwareTextEditor(text: $timenote.text, textPos: $textPos, controller:timenote)
-                    .font(.system(size: 19))
-                    .focused($focusedField, equals: .text)
+            
+            
+            PositionAwareTextEditor(text: $timenote.text, textPos: $textPos, controller:timenote)
+                .font(.system(size: 19))
+                .focused($focusedField, equals: .text)
             
         }.toast(isPresenting: $showAudioSyncToast) {
             AlertToast(type: .regular, title: "Media is playing, to pause or play, use the play/pause on the media app, and this app will sync with it.")     }
-    }
-}
+        .fileExporter(isPresented: $showExporter, document: TextFile(initialText: timenote.text), contentType: .plainText) { result in
+            switch result {
+            case .success(let url):
+                print("Saved to \(url)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }}
     
    
 struct timePostAdjustView: View {
@@ -218,7 +231,6 @@ struct timePreAdjust:View{
         }
     }
 }
-@available(iOS 15.0, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

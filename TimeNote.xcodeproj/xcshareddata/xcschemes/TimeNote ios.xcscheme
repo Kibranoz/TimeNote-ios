@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F3084782582FFE800B2F33D"
-               BuildableName = "TimeNote ios.app"
-               BlueprintName = "TimeNote ios"
+               BuildableName = "Timenote.app"
+               BlueprintName = "Timenote"
                ReferencedContainer = "container:TimeNote.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F3084782582FFE800B2F33D"
-            BuildableName = "TimeNote ios.app"
-            BlueprintName = "TimeNote ios"
+            BuildableName = "Timenote.app"
+            BlueprintName = "Timenote"
             ReferencedContainer = "container:TimeNote.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F3084782582FFE800B2F33D"
-            BuildableName = "TimeNote ios.app"
-            BlueprintName = "TimeNote ios"
+            BuildableName = "Timenote.app"
+            BlueprintName = "Timenote"
             ReferencedContainer = "container:TimeNote.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

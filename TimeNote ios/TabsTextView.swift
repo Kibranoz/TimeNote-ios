@@ -12,7 +12,6 @@ import Foundation
 import SwiftUI
 import UIKit
 
-
 struct PositionAwareTextEditor: UIViewRepresentable{
     typealias UIViewType = UITextView
     
@@ -28,7 +27,6 @@ struct PositionAwareTextEditor: UIViewRepresentable{
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: uiTextView.frame.size.width, height: 44))
  
         uiTextView.font = UIFont.systemFont(ofSize: 19)
-        uiTextView.text = text;
         uiTextView.delegate = context.coordinator
         
         let tabButton = UIBarButtonItem(image: .init(systemName: "arrow.right.to.line.compact"), primaryAction: UIAction{action in
@@ -53,19 +51,15 @@ struct PositionAwareTextEditor: UIViewRepresentable{
     }
     
     func updateUIView(_ uiView:UITextView, context: Context) {
-        uiView.text = text;
-        
-        //if let selectedRange: UITextRange = uiView.selectedTextRange{
-
-        //    self.textPos = uiView.offset(from: uiView.beginningOfDocument, to: selectedRange.start)
-        
-    //}
+        if uiView.text != text {
+            uiView.text = text
+        }
         
         
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator($text, textPos: textPos, controller:controller)
+        Coordinator($text, textPos: textPos, controller: controller)
     }
     
 }
@@ -110,6 +104,7 @@ class Coordinator: NSObject, UITextViewDelegate {
  
     func textViewDidChange(_ textView: UITextView) {
         self.text.wrappedValue = textView.text
+        UserDefaults.standard.set(textView.text, forKey: "timenoteText")
         if let selectedRange: UITextRange = textView.selectedTextRange{
 
             self.textPos = textView.offset(from: textView.beginningOfDocument, to: selectedRange.start)

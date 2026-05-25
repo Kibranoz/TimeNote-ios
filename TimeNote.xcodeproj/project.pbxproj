@@ -41,7 +41,7 @@
 		4F1A3DC42F81891900CA23BA /* dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dao.swift; sourceTree = "<group>"; };
 		4F1A3DC62F818AB900CA23BA /* TimeStampedNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStampedNote.swift; sourceTree = "<group>"; };
 		4F1A3DC82F81E07000CA23BA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		4F3084792582FFE800B2F33D /* TimeNote ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeNote ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3084792582FFE800B2F33D /* Timenote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timenote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeNote_iosApp.swift; sourceTree = "<group>"; };
 		4F30847E2582FFE800B2F33D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4F3084852582FFE900B2F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		4F30847A2582FFE800B2F33D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F3084792582FFE800B2F33D /* TimeNote ios.app */,
+				4F3084792582FFE800B2F33D /* Timenote.app */,
 				4F30848A2582FFEA00B2F33D /* TimeNote iosTests.xctest */,
 				4F3084952582FFEA00B2F33D /* TimeNote iosUITests.xctest */,
 			);
@@ -151,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F3084782582FFE800B2F33D /* TimeNote ios */ = {
+		4F3084782582FFE800B2F33D /* Timenote */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F30849E2582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote ios" */;
+			buildConfigurationList = 4F30849E2582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "Timenote" */;
 			buildPhases = (
 				4F3084752582FFE800B2F33D /* Sources */,
 				4F3084762582FFE800B2F33D /* Frameworks */,
@@ -163,9 +163,9 @@
 			);
 			dependencies = (
 			);
-			name = "TimeNote ios";
+			name = Timenote;
 			productName = "TimeNote ios";
-			productReference = 4F3084792582FFE800B2F33D /* TimeNote ios.app */;
+			productReference = 4F3084792582FFE800B2F33D /* Timenote.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4F3084892582FFEA00B2F33D /* TimeNote iosTests */ = {
@@ -246,7 +246,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F3084782582FFE800B2F33D /* TimeNote ios */,
+				4F3084782582FFE800B2F33D /* Timenote */,
 				4F3084892582FFEA00B2F33D /* TimeNote iosTests */,
 				4F3084942582FFEA00B2F33D /* TimeNote iosUITests */,
 			);
@@ -314,12 +314,12 @@
 /* Begin PBXTargetDependency section */
 		4F30848C2582FFEA00B2F33D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F3084782582FFE800B2F33D /* TimeNote ios */;
+			target = 4F3084782582FFE800B2F33D /* Timenote */;
 			targetProxy = 4F30848B2582FFEA00B2F33D /* PBXContainerItemProxy */;
 		};
 		4F3084972582FFEA00B2F33D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F3084782582FFE800B2F33D /* TimeNote ios */;
+			target = 4F3084782582FFE800B2F33D /* Timenote */;
 			targetProxy = 4F3084962582FFEA00B2F33D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -461,11 +461,22 @@
 				CODE_SIGN_ENTITLEMENTS = "TimeNote ios/TimeNote ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 6XZR42KR6H;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				INFOPLIST_FILE = "TimeNote ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Timenote;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -474,12 +485,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = lrc.Timenote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,11 +508,25 @@
 				CODE_SIGN_ENTITLEMENTS = "TimeNote ios/TimeNote ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 6XZR42KR6H;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_MOVIES_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_MUSIC_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				INFOPLIST_FILE = "TimeNote ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Timenote;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -506,13 +535,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = lrc.Timenote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -606,7 +638,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F30849E2582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "TimeNote ios" */ = {
+		4F30849E2582FFEA00B2F33D /* Build configuration list for PBXNativeTarget "Timenote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F30849F2582FFEA00B2F33D /* Debug */,

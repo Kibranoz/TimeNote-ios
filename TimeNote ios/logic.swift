@@ -18,7 +18,9 @@ import SwiftUI
 import UIKit
 import AVFoundation
 import Combine
+import UniformTypeIdentifiers
 
+import SwiftData
 
 class AppController:ObservableObject{
     @Published var text = "";
@@ -33,10 +35,21 @@ class AppController:ObservableObject{
     
     var pauseTime:Int = 0
     init(){
+        
+        if text.isEmpty {
+            self.text = UserDefaults.standard.string(forKey: "timenoteText") ?? ""
+        }
         Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
             
                 self.tick()
            
+        }
+    }
+    
+    func saveText(){
+        if !text.isEmpty {
+            UserDefaults.standard.set(self.text, forKey: "timenoteText")
+
         }
     }
     
@@ -71,15 +84,6 @@ class AppController:ObservableObject{
         self.enPause = false;
         self.pauseOrPlayButton = "pause.fill"
     }
-    
-    func write(text: String, to fileNamed: String, folder: String = "TimenoteFiles") {
-        
-        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return }
-        guard let writePath = NSURL(fileURLWithPath: path).appendingPathComponent(folder) else { return }
-        try? FileManager.default.createDirectory(atPath: writePath.path, withIntermediateDirectories: true)
-        let file = writePath.appendingPathComponent(fileNamed + ".txt")
-        try? text.write(to: file, atomically: false, encoding: String.Encoding.utf8)
-    }
     func pause(){
         if self.enPause {
             return
@@ -93,19 +97,23 @@ class AppController:ObservableObject{
     }
     func inputText(text:String)->Void{
         self.text = text;
+        saveText()
 
     }
     func addNote() -> Void {
         self.text += "\n" + "-" + getStrTime() + " : "
+        saveText()
     }
     
     func updateNotesByOffset(hours:Int, minutes:Int, seconds:Int) {
         let textUpdater = TextUpdater(text: self.text)
         self.text = textUpdater.getCorrectedTextForTime(hours: hours, minutes: minutes, seconds: seconds)
+        saveText()
     }
     func addTab(cursorPosition:Int){
         let textUpdater = TextUpdater(text: self.text)
         self.text = textUpdater.insertAt(element: "    ", position: cursorPosition)
+        saveText()
     }
     func adjustTime(_hours:Int, _minutes:Int, _seconds:Int){
         self.timeBeginning = Int(NSDate().timeIntervalSince1970) - ((_hours * 3600) + (_minutes*60) + _seconds)
@@ -141,6 +149,32 @@ class AppController:ObservableObject{
 
     }
     
+}
+
+struct TextFile: FileDocument {
+    // tell the system we support only plain text
+    static var readableContentTypes = [UTType.plainText]
+
+    // by default our document is empty
+    var text = ""
+
+    // a simple initializer that creates new, empty documents
+    init(initialText: String = "") {
+        text = initialText
+    }
+
+    // this initializer loads data that has been saved previously
+    init(configuration: ReadConfiguration) throws {
+        if let data = configuration.file.regularFileContents {
+            text = String(decoding: data, as: UTF8.self)
+        }
+    }
+
+    // this will be called when the system wants to write our data to disk
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        let data = Data(text.utf8)
+        return FileWrapper(regularFileWithContents: data)
+    }
 }
 
 class AudioSessionManager: ObservableObject {
