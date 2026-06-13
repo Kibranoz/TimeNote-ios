@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F1A3DC52F81891D00CA23BA /* dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A3DC42F81891900CA23BA /* dao.swift */; };
 		4F1A3DC72F818AC300CA23BA /* TimeStampedNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A3DC62F818AB900CA23BA /* TimeStampedNote.swift */; };
 		4F1A3DC92F81E07000CA23BA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4F1A3DC82F81E07000CA23BA /* Localizable.xcstrings */; };
 		4F30847D2582FFE800B2F33D /* TimeNote_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */; };
@@ -38,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4F1A3DC42F81891900CA23BA /* dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dao.swift; sourceTree = "<group>"; };
 		4F1A3DC62F818AB900CA23BA /* TimeStampedNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStampedNote.swift; sourceTree = "<group>"; };
 		4F1A3DC82F81E07000CA23BA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4F3084792582FFE800B2F33D /* Timenote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timenote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				4F1A3DC62F818AB900CA23BA /* TimeStampedNote.swift */,
-				4F1A3DC42F81891900CA23BA /* dao.swift */,
 				4FEDC7F025FD60B200B84A69 /* TimeNote ios.entitlements */,
 				4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */,
 				4F30847E2582FFE800B2F33D /* ContentView.swift */,
@@ -285,7 +282,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F30847F2582FFE800B2F33D /* ContentView.swift in Sources */,
-				4F1A3DC52F81891D00CA23BA /* dao.swift in Sources */,
 				4F3084AB2583003900B2F33D /* logic.swift in Sources */,
 				4F1A3DC72F818AC300CA23BA /* TimeStampedNote.swift in Sources */,
 				4F30847D2582FFE800B2F33D /* TimeNote_iosApp.swift in Sources */,
