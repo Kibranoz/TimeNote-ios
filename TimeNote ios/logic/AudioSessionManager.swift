@@ -1,3 +1,15 @@
+//
+//  AudioSessionManager.swift
+//  TimeNote
+//
+//  Created by Louis R Couture on 2026-06-28.
+//
+
+import Foundation
+import Combine
+import AVFAudio
+
+
 class AudioSessionManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var timenote:AppController

@@ -30,27 +30,24 @@ class AppController:ObservableObject{
     var pauseBeginning = 0;
     var enPause:Bool = true;
     var begin = true;
-    var audioSyncEnabled: Bool = true;
-    @Published var isCurrentlyAudioSync:Bool = false;
+    @ObservedObject var audioSyncManager:AudioSyncManager;
+    @Published var showAudioSyncPopover:Bool = false
     @Published var pauseOrPlayButton: String = "play.fill"
     
     var pauseTime:Int = 0
     init(){
-        self.audioSyncEnabled = UserDefaults.standard.bool(forKey: "audioSyncEnabled")
+        audioSyncManager = AudioSyncManager()
         if text.isEmpty {
             self.text = UserDefaults.standard.string(forKey: "timenoteText") ?? ""
         }
         Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
-            
                 self.tick()
-           
         }
     }
     
     func saveText(){
         if !text.isEmpty {
             UserDefaults.standard.set(self.text, forKey: "timenoteText")
-
         }
     }
     
@@ -89,6 +86,10 @@ class AppController:ObservableObject{
         if self.enPause {
             return
         }
+        self.showAudioSyncPopover = audioSyncManager.shouldSendAudioSyncPopOver()
+        if self.showAudioSyncPopover { // There is no pause to have because we are un sync mode
+            return
+        }
         self.pauseBeginning = Int(NSDate().timeIntervalSince1970)
         self.enPause = true;
         self.pauseOrPlayButton = "play.fill"
@@ -120,38 +121,19 @@ class AppController:ObservableObject{
         self.timeBeginning = Int(NSDate().timeIntervalSince1970) - ((_hours * 3600) + (_minutes*60) + _seconds)
         print(_minutes*60);
     }
-    func shouldStartAudioSync()->Bool {
-        let isExternalAudioPlaying = AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint
-        return isExternalAudioPlaying
-    }
-    func shouldEndAudioSync()->Bool {
-        let isExternalAudioPlaying = AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint
-        return (!isExternalAudioPlaying && self.isCurrentlyAudioSync)
-    }
     func tick(){
+        audioSyncManager.syncAudio(pauseFunction: self.pause, playFunction: self.play)
         if !(self.enPause){
             self.time = Int(NSDate().timeIntervalSince1970) - self.timeBeginning
             self.formattedTime = getStrTime()
-            
         }
         if (self.enPause && !self.begin){
             self.pauseTime = Int(NSDate().timeIntervalSince1970)
-            
         }
-        if (audioSyncEnabled) {
-            if shouldStartAudioSync() {
-                self.play()
-                self.isCurrentlyAudioSync = true
-            }
-            if shouldEndAudioSync() {
-                self.pause()
-                self.isCurrentlyAudioSync = false
-            }
-        } else {
-            isCurrentlyAudioSync = false
-        }
-
     }
+        
+        
+        
     
 }
 
@@ -181,101 +163,4 @@ struct TextFile: FileDocument {
     }
 }
 
-class AudioSessionManager: ObservableObject {
-    private var cancellables = Set<AnyCancellable>()
-    private var timenote:AppController
-    
-    private func setupAudioSession() {
-        do {
-            let session = AVAudioSession.sharedInstance()
-            // Use a secondary audio category so we can react to non-mixable audio
-            // from other apps (for example YouTube in Split View/Stage Manager).
-            try session.setCategory(.ambient, mode: .default, options: [])
-            try session.setActive(true)
-        } catch {
-            print("Erreur fatale : Impossible de configurer la session audio : \(error)")
-        }
-    }
-    
-    init(timeNote: AppController) {
-        self.timenote = timeNote
-        self.setupAudioSession()
-        setupObservers()
-    }
-    
-    func setupObservers() {
-        
-        // 2. Pour la musique externe (Spotify, etc.)
-        NotificationCenter.default.publisher(for: AVAudioSession.silenceSecondaryAudioHintNotification)
-            .sink { [weak self] n in self?.handleSecondaryAudioHint(n) }
-            .store(in: &cancellables)
-    }
-    
-    private func handleSecondaryAudioHint(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let typeValue = userInfo[AVAudioSessionSilenceSecondaryAudioHintTypeKey] as? UInt,
-              let type = AVAudioSession.SilenceSecondaryAudioHintType(rawValue: typeValue) else { return }
-        
-        if type == .begin {
-            print("Son externe détecté -> Play")
-        } else {
-            print("Silence externe détecté -> Pause")
-        }
-    }
 
-}
-
-
-class TextUpdater {
-    var text: String;
-    init(text:String){
-        self.text = text;
-    }
-    func insertAt(element:String, position:Int)->String{
-        var newString = "";
-        var counter = 0;
-        for ch in self.text {
-            if (counter == position){
-                newString += element;
-                newString += String(ch);
-            }
-            else {
-                newString += String(ch)
-            }
-            counter += 1;
-        }
-        self.text = newString;
-        return newString;
-    }
-    
-    func getTimeStampedNotes() -> [TimeStampedNote] {
-        var timeStampedNotes: [TimeStampedNote] = []
-        let timeStampRegex =  #"\-\d{2}:\d{2}:\d{2}\ :\ [\s\S]*?(?=\-\d{2}:\d{2}:\d{2}\ :\ |$)"#
-        
-        for match in self.text.matches(of: try! Regex(timeStampRegex)) {
-            let timeStamp = TimeStampedNote(stringRepresentation: String(self.text[match.range]))
-            timeStampedNotes.append(timeStamp)
-        }
-        return timeStampedNotes
-    }
-    
-    func getCorrectedTextForTime(hours:Int, minutes:Int, seconds:Int) -> String {
-        let offset = time(hours: hours, minutes: minutes, seconds: seconds)
-        var newText = ""
-        
-        let timeStampedNotes: [TimeStampedNote] = self.getTimeStampedNotes()
-        
-        let updatedNotes: [TimeStampedNote] = timeStampedNotes.map { note in
-            let newNote = note.offset(by: offset)
-            return newNote
-        }
-        updatedNotes.forEach { note in
-            newText += note.toString()
-        }
-        
-        return newText
-        
-        
-    }
-    
-    }

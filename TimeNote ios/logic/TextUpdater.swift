@@ -1,3 +1,11 @@
+//
+//  TextUpdater.swift
+//  TimeNote
+//
+//  Created by Louis R Couture on 2026-06-28.
+//
+
+
 class TextUpdater {
     var text: String;
     init(text:String){

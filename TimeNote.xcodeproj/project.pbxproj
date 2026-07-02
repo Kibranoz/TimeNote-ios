@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,10 +13,11 @@
 		4F30847F2582FFE800B2F33D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30847E2582FFE800B2F33D /* ContentView.swift */; };
 		4F30848F2582FFEA00B2F33D /* TimeNote_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30848E2582FFEA00B2F33D /* TimeNote_iosTests.swift */; };
 		4F30849A2582FFEA00B2F33D /* TimeNote_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */; };
-		4F3084AB2583003900B2F33D /* logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3084AA2583003900B2F33D /* logic.swift */; };
 		4F511CFD28307E2100D2A16A /* TabsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F511CFC28307E2100D2A16A /* TabsTextView.swift */; };
 		4F58BF9D2F8B205100302709 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 4F58BF9C2F8B205100302709 /* AlertToast */; };
 		4F9913192F8355F40042A973 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4F9913182F8355F40042A973 /* AppIcon.icon */; };
+		8311C8842FDDE154006D73AD /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8311C8832FDDE151006D73AD /* settings.swift */; };
+		8311C8872FDDE1D1006D73AD /* adjustView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8311C8862FDDE1CC006D73AD /* adjustView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,12 +50,17 @@
 		4F3084952582FFEA00B2F33D /* TimeNote iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TimeNote iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3084992582FFEA00B2F33D /* TimeNote_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeNote_iosUITests.swift; sourceTree = "<group>"; };
 		4F30849B2582FFEA00B2F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F3084AA2583003900B2F33D /* logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logic.swift; sourceTree = "<group>"; };
 		4F511CFC28307E2100D2A16A /* TabsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsTextView.swift; sourceTree = "<group>"; };
 		4F9912DC2F8350A00042A973 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		4F9913182F8355F40042A973 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		4FEDC7F025FD60B200B84A69 /* TimeNote ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TimeNote ios.entitlements"; sourceTree = "<group>"; };
+		8311C8832FDDE151006D73AD /* settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
+		8311C8862FDDE1CC006D73AD /* adjustView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adjustView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		835878732FF206100082DA38 /* logic */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = logic; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F3084762582FFE800B2F33D /* Frameworks */ = {
@@ -109,13 +115,11 @@
 		4F30847B2582FFE800B2F33D /* TimeNote ios */ = {
 			isa = PBXGroup;
 			children = (
+				835878732FF206100082DA38 /* logic */,
+				8311C8852FDDE161006D73AD /* views */,
 				4F1A3DC62F818AB900CA23BA /* TimeStampedNote.swift */,
 				4FEDC7F025FD60B200B84A69 /* TimeNote ios.entitlements */,
-				4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */,
-				4F30847E2582FFE800B2F33D /* ContentView.swift */,
 				4F3084852582FFE900B2F33D /* Info.plist */,
-				4F3084AA2583003900B2F33D /* logic.swift */,
-				4F511CFC28307E2100D2A16A /* TabsTextView.swift */,
 			);
 			path = "TimeNote ios";
 			sourceTree = "<group>";
@@ -145,6 +149,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8311C8852FDDE161006D73AD /* views */ = {
+			isa = PBXGroup;
+			children = (
+				8311C8862FDDE1CC006D73AD /* adjustView.swift */,
+				4F511CFC28307E2100D2A16A /* TabsTextView.swift */,
+				4F30847C2582FFE800B2F33D /* TimeNote_iosApp.swift */,
+				4F30847E2582FFE800B2F33D /* ContentView.swift */,
+				8311C8832FDDE151006D73AD /* settings.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,6 +175,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				835878732FF206100082DA38 /* logic */,
 			);
 			name = Timenote;
 			productName = "TimeNote ios";
@@ -282,7 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F30847F2582FFE800B2F33D /* ContentView.swift in Sources */,
-				4F3084AB2583003900B2F33D /* logic.swift in Sources */,
+				8311C8842FDDE154006D73AD /* settings.swift in Sources */,
+				8311C8872FDDE1D1006D73AD /* adjustView.swift in Sources */,
 				4F1A3DC72F818AC300CA23BA /* TimeStampedNote.swift in Sources */,
 				4F30847D2582FFE800B2F33D /* TimeNote_iosApp.swift in Sources */,
 				4F511CFD28307E2100D2A16A /* TabsTextView.swift in Sources */,
