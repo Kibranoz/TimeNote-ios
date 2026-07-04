@@ -41,6 +41,7 @@ struct ContentView: View {
 
     
     @FocusState private var focusedField: Field?
+    let buttonSize: CGFloat = 35
     
     
     var body: some View {
@@ -63,8 +64,9 @@ struct ContentView: View {
                     showAdjustView.toggle()
                 }, label: {
                     Image(systemName: "clock.arrow.circlepath")
-                        .font(.system(size: 35))
-                        .frame(width: 40, height: 40, alignment: .center)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: buttonSize, height: buttonSize, alignment: .center)
 
                     
                 }).buttonStyle(PlainButtonStyle())
@@ -72,8 +74,9 @@ struct ContentView: View {
                     timenote.addNote()
                 }, label: {
                     Image(systemName: "text.insert")
-                        .font(.system(size: 35))
-                        .frame(width: 40, height: 40, alignment: .center)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: buttonSize, height: buttonSize, alignment: .center)
 
                 }).buttonStyle(PlainButtonStyle())
                 Button(action: {
@@ -86,8 +89,9 @@ struct ContentView: View {
                     
                 }, label: {
                     Image(systemName: timenote.pauseOrPlayButton)
-                        .font(.system(size: 35))
-                        .frame(width: 40, height: 40, alignment: .center)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: buttonSize, height: buttonSize, alignment: .center)
 
                 })
                 .buttonStyle(PlainButtonStyle())
@@ -96,15 +100,18 @@ struct ContentView: View {
                     self.showExporter = true
                 }, label: {
                     Image(systemName: "square.and.arrow.down")
-                        .frame(width: 40, height: 40, alignment: .center)
-                        .font(.system(size: 35))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: buttonSize, height: buttonSize, alignment: .center)
                 }).buttonStyle(PlainButtonStyle())
 #else
                 Button(action: {
                     self.isSheetPresented = true
                 }, label: {
                     Image(systemName: "square.and.arrow.up")
-                        .frame(width: 40, height: 40, alignment: .center)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: buttonSize, height: buttonSize, alignment: .center)
                         .font(.system(size: 35))
                 }).buttonStyle(PlainButtonStyle())
                     .popover(isPresented: $isSheetPresented)  {
@@ -118,8 +125,9 @@ struct ContentView: View {
                     },
                     label: {
                         Image (systemName: "ellipsis.circle")
-                            .font(.system(size: 30))
-                            .frame(width: 40, height: 40, alignment: .bottom)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: buttonSize, height: buttonSize, alignment: .center)
                     }
                 ).buttonStyle(PlainButtonStyle())
             }
