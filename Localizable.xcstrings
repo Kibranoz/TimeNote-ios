@@ -109,6 +109,18 @@
             "state" : "translated",
             "value" : "Activer la synchronisation des pauses"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同期の一時停止を有効にする"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivera paussynkronisering"
+          }
         }
       }
     },
