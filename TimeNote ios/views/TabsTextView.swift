@@ -106,7 +106,6 @@ class Coordinator: NSObject, UITextViewDelegate {
         self.text.wrappedValue = textView.text
         UserDefaults.standard.set(textView.text, forKey: "timenoteText")
         if let selectedRange: UITextRange = textView.selectedTextRange{
-
             self.textPos = textView.offset(from: textView.beginningOfDocument, to: selectedRange.start)
         }
 

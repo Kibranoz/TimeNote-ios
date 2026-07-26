@@ -28,13 +28,14 @@ struct timePostAdjustView: View {
                     negativeTime = !negativeTime
                 }, label: {
                     negativeTime ? Text("-").foregroundColor(.red).font(.system(size: 20)) : Text("+").foregroundColor(.green).font(.system(size: 20))
-                })
+                }).accessibilityIdentifier("timePostAdjustSignTimeButton")
                 
                 
                 TextField("HH", text : $strHours)
                     .frame(width: 50.0, height: 25)
                     .font(.system(size: 30))
                     .keyboardType(.numberPad)
+                    .accessibilityIdentifier("timePostAdjustHoursTextField")
                 
                 
                 Text(":")
@@ -42,12 +43,14 @@ struct timePostAdjustView: View {
                     .frame(width:55.0, height: 25)
                     .font(.system(size: 30))
                     .keyboardType(.numberPad)
+                    .accessibilityIdentifier("timePostAdjustMinutesTextField")
                 
                 Text(":")
                 TextField("SS", text:$strSeconds)
                     .frame(width: 50.0, height: 25)
                     .font(.system(size: 30))
                     .keyboardType(.numberPad)
+                    .accessibilityIdentifier("timePostAdjustSecondsTextField")
                 
             }.padding(.bottom, 20.0)
             
@@ -60,7 +63,7 @@ struct timePostAdjustView: View {
                 shouldDisplay = false
             }, label: {
                 Text("Done")
-            }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19))
+            }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19)).accessibilityIdentifier("timePostAdjustDoneButton")
         }
     }
 
@@ -86,6 +89,7 @@ struct timePreAdjust:View{
                 .frame(width: 50.0, height: 25)
                 .font(.system(size: 30))
                 .keyboardType(.numberPad)
+                .accessibilityIdentifier("timePreAdjustHoursTextField")
 
                 
             Text(":")
@@ -93,12 +97,14 @@ struct timePreAdjust:View{
                 .frame(width:55.0, height: 25)
                 .font(.system(size: 30))
                 .keyboardType(.numberPad)
+                .accessibilityIdentifier("timePreAdjustMinutesTextField")
 
             Text(":")
             TextField("SS", text:$strSeconds)
                 .frame(width: 50.0, height: 25)
                 .font(.system(size: 30))
                 .keyboardType(.numberPad)
+                .accessibilityIdentifier("timePreAdjustSecondsTextField")
 
         }.padding(.bottom, 20.0)
         Button(action: {
@@ -115,7 +121,7 @@ struct timePreAdjust:View{
 
         }, label: {
             Text("Done")
-        }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19))
+        }).padding(.all, 10.0).buttonStyle(PlainButtonStyle()).background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/).border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/).cornerRadius(/*@START_MENU_TOKEN@*/37.0/*@END_MENU_TOKEN@*/).font(.system(size: 19)).accessibilityIdentifier("timePreAdjustDoneButton")
         }
     }
 }

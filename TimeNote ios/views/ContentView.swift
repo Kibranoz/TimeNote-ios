@@ -48,7 +48,7 @@ struct ContentView: View {
         let layout = horizontalSizeClass == .regular ? AnyLayout(HStackLayout()) : AnyLayout(VStackLayout())
         VStack{
             
-            Text(timenote.formattedTime).bold().font(.system(size: 50))
+            Text(timenote.formattedTime).bold().font(.system(size: 50)).accessibilityIdentifier("currentTime")
             if (showAdjustView){
                 layout{
                     timePreAdjust(shouldDisplay: $showAdjustView, timenote: timenote, hours: $hours, minutes: $minutes, seconds: $seconds, time: $timenote.formattedTime)
@@ -69,7 +69,7 @@ struct ContentView: View {
                         .frame(width: buttonSize, height: buttonSize, alignment: .center)
 
                     
-                }).buttonStyle(PlainButtonStyle())
+                }).buttonStyle(PlainButtonStyle()).accessibilityIdentifier("adjustTimeMenuButton")
                 Button(action: {
                     timenote.addNote()
                 }, label: {
@@ -78,7 +78,7 @@ struct ContentView: View {
                         .scaledToFit()
                         .frame(width: buttonSize, height: buttonSize, alignment: .center)
 
-                }).buttonStyle(PlainButtonStyle())
+                }).buttonStyle(PlainButtonStyle()).accessibilityIdentifier("addNoteMenuButton")
                 Button(action: {
                     if (timenote.getSiEnPause()){
                         timenote.play()
@@ -93,7 +93,7 @@ struct ContentView: View {
                         .scaledToFit()
                         .frame(width: buttonSize, height: buttonSize, alignment: .center)
 
-                })
+                }).accessibilityIdentifier("pausePlayMenuButton")
                 .buttonStyle(PlainButtonStyle())
 #if targetEnvironment(macCatalyst)
                 Button(action: {
@@ -103,7 +103,7 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: buttonSize, height: buttonSize, alignment: .center)
-                }).buttonStyle(PlainButtonStyle())
+                }).accessibilityIdentifier("exportMenuButton").buttonStyle(PlainButtonStyle())
 #else
                 Button(action: {
                     self.isSheetPresented = true
@@ -113,7 +113,7 @@ struct ContentView: View {
                         .scaledToFit()
                         .frame(width: buttonSize, height: buttonSize, alignment: .center)
                         .font(.system(size: 35))
-                }).buttonStyle(PlainButtonStyle())
+                }).accessibilityIdentifier("exportMenuButton").buttonStyle(PlainButtonStyle())
                     .popover(isPresented: $isSheetPresented)  {
                         ActivityView(isSheetPresented: $isSheetPresented, activityItems: [timenote.text], applicationActivities: [])
                     }
@@ -129,7 +129,7 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: buttonSize, height: buttonSize, alignment: .center)
                     }
-                ).buttonStyle(PlainButtonStyle())
+                ).accessibilityIdentifier("settingsMenuButton").buttonStyle(PlainButtonStyle())
             }
             
             
