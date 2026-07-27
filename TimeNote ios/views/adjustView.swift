@@ -108,11 +108,6 @@ struct timePreAdjust:View{
 
         }.padding(.bottom, 20.0)
         Button(action: {
-            timenote.play()
-
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
-                time = timenote.getStrTime()
-            }
             hours = Int (strHours) ?? 0
             minutes = Int (strMinutes) ?? 0
             seconds = Int (strSeconds) ?? 0

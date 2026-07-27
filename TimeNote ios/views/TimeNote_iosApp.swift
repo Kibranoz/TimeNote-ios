@@ -13,6 +13,7 @@ import SwiftData
 struct TimeNote_iosApp: App {
     @StateObject var timenote:AppController
     @StateObject var audioObserver:AudioSessionManager
+    @Environment(\.scenePhase) var scenePhase
     init() {
         let timeNoteInstance = AppController()
         _timenote = .init(wrappedValue: timeNoteInstance)
@@ -24,6 +25,10 @@ struct TimeNote_iosApp: App {
         WindowGroup {
             ContentView().environmentObject(timenote)
                 .environmentObject(audioObserver)
+        }.onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                audioObserver.reinitialize()
+            }
         }
     }
 }

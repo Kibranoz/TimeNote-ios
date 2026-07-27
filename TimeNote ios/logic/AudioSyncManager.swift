@@ -32,15 +32,13 @@ class AudioSyncManager: ObservableObject {
         return (isCurrentlyAudioSync)
     }
     
-    func syncAudio(pauseFunction: ()->Void, playFunction: ()->Void) {
-        if (self.isSyncEnabled) {
+    func syncAudio() {
+        if (self.getIfSyncEnabled()) {
             if shouldStartAudioSync() {
                 self.isCurrentlyAudioSync = true
-                playFunction()
             }
             if shouldEndAudioSync() {
                 self.isCurrentlyAudioSync = false
-                pauseFunction()
             }
         } else {
             isCurrentlyAudioSync = false

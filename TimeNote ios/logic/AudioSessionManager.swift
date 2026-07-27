@@ -26,6 +26,11 @@ class AudioSessionManager: ObservableObject {
         }
     }
     
+    func reinitialize() {
+        self.setupAudioSession()
+        setupObservers()
+    }
+    
     init(timeNote: AppController) {
         self.timenote = timeNote
         self.setupAudioSession()
@@ -47,8 +52,17 @@ class AudioSessionManager: ObservableObject {
         
         if type == .begin {
             print("Son externe détecté -> Play")
+            if timenote.audioSyncManager.getIfSyncEnabled(){
+                timenote.audioSyncManager.syncAudio()
+                timenote.play()
+            }
         } else {
             print("Silence externe détecté -> Pause")
+            if timenote.audioSyncManager.getIfSyncEnabled() {
+                timenote.audioSyncManager.syncAudio()
+                timenote.pause()
+            }
+
         }
     }
 
