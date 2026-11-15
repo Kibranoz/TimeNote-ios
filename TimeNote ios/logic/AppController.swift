@@ -53,8 +53,7 @@ class AppController:ObservableObject{
     }
     
     func getStrTime() -> String{
-        
-        
+                
         let hr = Int(floor(Double(self.time/3600)));
         let hour:String  = hr < 10 ? "0" + String(hr) : String(hr)
         let min = Int(floor(self.time/60)) % 60;
@@ -126,7 +125,7 @@ class AppController:ObservableObject{
     }
     func addTab(cursorPosition:Int){
         let textUpdater = TextUpdater(text: self.text)
-        self.text = textUpdater.insertAt(element: "    ", position: cursorPosition)
+        self.text = textUpdater.insertAtNearestNewline(element: "    ", around: cursorPosition)
         saveText()
     }
     func adjustTime(_hours:Int, _minutes:Int, _seconds:Int){
@@ -152,7 +151,6 @@ class AppController:ObservableObject{
         audioSyncManager.syncAudio()
         if !(self.enPause){
             self.time = NSDate().timeIntervalSince1970 - self.timeBeginning
-            print(self.time)
             self.formattedTime = getStrTime()
         }
         if (self.enPause && !self.begin){

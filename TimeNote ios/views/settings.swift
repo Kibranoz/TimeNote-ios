@@ -13,7 +13,7 @@ struct Settings: View {
             
             Toggle(isOn: controller.$audioSyncManager.isSyncEnabled, label : {
                 Text("Enable Pause Sync")
-            })
+            }).accessibilityIdentifier("audioSyncToggle")
         }.padding(_: EdgeInsets(top: 0, leading: 10, bottom: 5, trailing: 10))
             .onChange(of: controller.audioSyncManager.isSyncEnabled) { oldValue, newValue in
                 UserDefaults.standard.set(newValue, forKey: "audioSyncEnabled")

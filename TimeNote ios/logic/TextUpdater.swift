@@ -11,6 +11,22 @@ class TextUpdater {
     init(text:String){
         self.text = text;
     }
+    
+    func insertAtNearestNewline(element: String, around:Int) -> String {
+        var nearestPosition = 0
+        
+
+        for i in 0..<around - 1 {
+                        
+            if self.text.split(separator: "")[i] == "\n" {
+                nearestPosition = i + 1
+            }
+
+            }
+        
+        return insertAt(element: element, position: nearestPosition )
+                    
+    }
     func insertAt(element:String, position:Int)->String{
         var newString = "";
         var counter = 0;

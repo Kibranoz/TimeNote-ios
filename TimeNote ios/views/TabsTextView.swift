@@ -28,17 +28,22 @@ struct PositionAwareTextEditor: UIViewRepresentable{
  
         uiTextView.font = UIFont.systemFont(ofSize: 19)
         uiTextView.delegate = context.coordinator
+        uiTextView.accessibilityIdentifier = "textEditor"
         
         let tabButton = UIBarButtonItem(image: .init(systemName: "arrow.right.to.line.compact"), primaryAction: UIAction{action in
             context.coordinator.addTab(textView: uiTextView) })
+        tabButton.accessibilityIdentifier = "tabKeyboardButton"
         let keyboardDownButton = UIBarButtonItem(image: .init(systemName: "keyboard.chevron.compact.down"), primaryAction: UIAction{action in
             context.coordinator.hideKeyBoard(textView:uiTextView)
         })
+        
+        keyboardDownButton.accessibilityIdentifier = "keyboardDownKeyboardButton"
         
         let selectAllButton = UIBarButtonItem(image: .init(systemName: "selection.pin.in.out"), primaryAction: UIAction {action
             in
             context.coordinator.selectAll(textView:uiTextView)
         })
+        selectAllButton.accessibilityIdentifier = "selectAllKeyboardButton"
                                               
         
         toolBar.setItems([tabButton,keyboardDownButton, selectAllButton], animated: true)
@@ -48,6 +53,10 @@ struct PositionAwareTextEditor: UIViewRepresentable{
        uiTextView.isUserInteractionEnabled = true
         
         return uiTextView;
+    }
+    
+    func menuSubview(){
+        
     }
     
     func updateUIView(_ uiView:UITextView, context: Context) {
